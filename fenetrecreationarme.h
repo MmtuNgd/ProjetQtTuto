@@ -2,9 +2,6 @@
 #define FENETRECREATIONARME_H
 
 #include <QWidget>
-#include "QWidget"
-#include "mainwindow.h"
-#include "QProgressBar"
 #include "QPushButton"
 #include "QLineEdit"
 #include "QFormLayout"
@@ -12,17 +9,21 @@
 #include "QString"
 #include "QObject"
 #include "QWidget"
+#include "arme.h"
 
 class FenetreCreationArme : public QWidget
 {
     Q_OBJECT
 public:
-    explicit FenetreCreationArme(QWidget *parent = nullptr);
+     FenetreCreationArme(QWidget *parent = nullptr);
     ~FenetreCreationArme();
 
+    QString GetNom(void);
+    int GetDegats(void);
+    int GetPoids(void);
     QStringList* GetArmeCreated(void);
 public slots:
-     void CreerArme(void);
+     Arme CreerArme(void);
 
 
 private:

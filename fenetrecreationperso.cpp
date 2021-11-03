@@ -7,11 +7,12 @@
 #include <QtDebug>
 using namespace std;
 
-FenetreCreationPerso::FenetreCreationPerso()
+FenetreCreationPerso::FenetreCreationPerso(QWidget *parent) : QWidget(parent)
  {
 
     this->setWindowTitle("Création d'un personnage");
     setFixedSize(300,300);
+
 
     m_LayoutGlobale = new QBoxLayout(QBoxLayout::TopToBottom,this);
 
@@ -54,6 +55,7 @@ FenetreCreationPerso::FenetreCreationPerso()
 
     QObject::connect(m_FermerCreationPerso,SIGNAL(clicked()),this,SLOT(close()));
     QObject::connect(m_ValidationPerso,SIGNAL(clicked()),this,SLOT(RemplirListe()));
+    QObject::connect(m_ValidationPerso,SIGNAL(clicked()),this,SLOT(SendMsg()));
 
 
 
@@ -64,12 +66,11 @@ FenetreCreationPerso::~FenetreCreationPerso()
 
 }
 
-//void FenetreCreationPerso::SendMsg(QString &tab)
 void FenetreCreationPerso::SendMsg(void)
 
 {
     //tab[0] = m_NomPerso->text();
-    qDebug() << m_NomPerso->text() ;
+    //qDebug() << /*QString::fromStdString(*/m_Personnage_a_creer.GetDegats();
 }
 
 void FenetreCreationPerso::RemplirListe()

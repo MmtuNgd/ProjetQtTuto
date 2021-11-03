@@ -1,29 +1,29 @@
 #ifndef FENETRECREATIONPERSO_H
 #define FENETRECREATIONPERSO_H
 
-#include "QWidget"
+#include <QWidget>
 #include "mainwindow.h"
-#include "QProgressBar"
+
 #include "QPushButton"
 #include "QLineEdit"
 #include "QFormLayout"
 #include "QLayout"
 #include "QString"
-#include "QObject"
 #include "QWidget"
-
+#include "personnage.h"
 class FenetreCreationPerso : public QWidget
 {
     Q_OBJECT
+public:
+    explicit FenetreCreationPerso(QWidget *parent = nullptr);
+    ~FenetreCreationPerso();
+
 private slots:
 //    void SendMsg(QString *tab);
     void SendMsg();
     void RemplirListe(void);
 
-public:
-    FenetreCreationPerso();
-//    FenetreCreationPerso(QLineEdit *NomPerso, QLineEdit *Classe, QLineEdit *Arme, QLineEdit *Equipe, QPushButton *ValidationPerso, QPushButton *FermerCreationPerso, QBoxLayout *LayoutGlobale, QFormLayout *ChampsSaisis, QHBoxLayout *LayoutHBoutons, QStringList *ListStringRecupPerso, const QString &StringNomPerso, const QString &StringClassePerso, const QString &StringArmePerso, const QString &StringEquipePerso);
-    ~FenetreCreationPerso();
+
 
 
 
@@ -49,6 +49,7 @@ private:
     QString m_StringClassePerso;
     QString m_StringArmePerso;
     QString m_StringEquipePerso;
+
 };
 
 #endif // FENETRECREATIONPERSO_H

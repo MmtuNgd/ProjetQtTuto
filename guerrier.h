@@ -10,6 +10,9 @@ public:
     ~Guerrier();
 
     void FrappeDeMalade(Personnage& personnage);
+
+private:
+
 };
 
 #endif // GUERRIER_H

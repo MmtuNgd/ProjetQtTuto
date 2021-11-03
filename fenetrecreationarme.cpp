@@ -4,10 +4,10 @@
 #include "QStringList"
 #include "QDebug"
 #include "QMessageBox"
-
+#include "QString"
 FenetreCreationArme::FenetreCreationArme(QWidget *parent) : QWidget(parent)
 {
-    this->setWindowTitle("Création d'un personnage");
+    setWindowTitle("Création d'un personnage");
     setFixedSize(300,300);
 
     m_LayoutGlobale = new QBoxLayout(QBoxLayout::TopToBottom,this);
@@ -61,19 +61,43 @@ QStringList* FenetreCreationArme::GetArmeCreated(void)
     return m_ListStringRecupArme;
 }
 
-void FenetreCreationArme::CreerArme(void)
+Arme FenetreCreationArme::CreerArme(void)
 {
+    Arme arme_creer;
+
 
     m_ListStringRecupArme->append(m_NomArme->text());
     m_ListStringRecupArme->append(m_DegatsArme->text());
     m_ListStringRecupArme->append(m_PoidsArme->text());
 
+
+
+
     if (m_NomArme->text().isEmpty() ||  m_DegatsArme->text().isEmpty() || m_PoidsArme->text().isEmpty())
     {
         QMessageBox::warning(this,"Attention","Veuillez vérifier les champs saisis");
     }
+    else
+    {
 
+    }
+//    qDebug() << "arme creee : "<< "Nom/dgts/poids : " <<  QString::fromStdString(arme_creer.GetNomArme())<< " / "<< arme_creer.GetDegats()<< " / "<< arme_creer.GetPoids();
+    return arme_creer;
 
+}
 
+QString FenetreCreationArme::GetNom(void)
+{
+    return m_NomArme->text();
+}
+
+int FenetreCreationArme::GetDegats()
+{
+    return m_DegatsArme->text().toInt();
+}
+
+int FenetreCreationArme::GetPoids()
+{
+    return m_PoidsArme->text().toInt();
 }
 

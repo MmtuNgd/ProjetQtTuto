@@ -1,6 +1,7 @@
-#include "mainwindow.h"
 
 #include <QApplication>
+#include "mainwindow.h"
+
 #include "personnage.h"
 #include "arme.h"
 #include "joueur.h"
@@ -12,6 +13,10 @@
 #include "pretre.h"
 #include "sorcier.h"
 #include "fenetrecreationperso.h"
+#include "QDebug"
+
+#include "vector"
+using namespace std;
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +24,16 @@ int main(int argc, char *argv[])
     MainWindow *w = new MainWindow();
 
 
+     std::vector<Personnage*> ListePersonnage;
+     std::vector<Arme*> ListeArmes;
+
+
+
+
+
+
+
+    //FenetreCreationPerso *wdw;
 
 
 
@@ -40,3 +55,13 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
+
+
+//Personnage CreerPersonnage(QStringList *listeInfosPerso)
+//{
+//    Personnage PersonnageCree;
+
+//    // Remplir avec les info de la qStringlist
+
+//    return PersonnageCree;
+//}

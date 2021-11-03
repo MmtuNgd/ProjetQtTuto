@@ -45,7 +45,7 @@ int Personnage::GetVitesse(void)
 }
 int Personnage::GetDegats(void)
 {
-    return m_vie_Max;
+    return m_degats;
 }
 std::string Personnage::GetNomPersonnage(void)
 {
