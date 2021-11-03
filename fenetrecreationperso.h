@@ -2,7 +2,6 @@
 #define FENETRECREATIONPERSO_H
 
 #include <QWidget>
-#include "mainwindow.h"
 
 #include "QPushButton"
 #include "QLineEdit"
@@ -10,7 +9,7 @@
 #include "QLayout"
 #include "QString"
 #include "QWidget"
-#include "personnage.h"
+
 class FenetreCreationPerso : public QWidget
 {
     Q_OBJECT
@@ -18,10 +17,8 @@ public:
     explicit FenetreCreationPerso(QWidget *parent = nullptr);
     ~FenetreCreationPerso();
 
-private slots:
-//    void SendMsg(QString *tab);
-    void SendMsg();
-    void RemplirListe(void);
+public slots:
+    void Verification_Champs_perso(void);
 
 
 
@@ -32,7 +29,6 @@ private slots:
 private:
     QLineEdit *m_NomPerso;
     QLineEdit *m_Classe;
-    QLineEdit *m_Arme;
     QLineEdit *m_Equipe;
 
     QPushButton *m_ValidationPerso;
@@ -47,7 +43,6 @@ private:
 
     QString m_StringNomPerso;
     QString m_StringClassePerso;
-    QString m_StringArmePerso;
     QString m_StringEquipePerso;
 
 };

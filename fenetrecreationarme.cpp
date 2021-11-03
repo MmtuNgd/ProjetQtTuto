@@ -5,6 +5,7 @@
 #include "QDebug"
 #include "QMessageBox"
 #include "QString"
+#include "iostream"
 FenetreCreationArme::FenetreCreationArme(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Création d'un personnage");
@@ -48,7 +49,11 @@ FenetreCreationArme::FenetreCreationArme(QWidget *parent) : QWidget(parent)
     setLayout(m_LayoutGlobale);
 
     QObject::connect(m_FermerCreationArme,SIGNAL(clicked()),this,SLOT(close()));
-    QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(CreerArme()));
+    QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(Verification_Champs_arme()));
+
+    QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(GetDegats()));
+
+
 }
 
 FenetreCreationArme::~FenetreCreationArme()
@@ -56,33 +61,19 @@ FenetreCreationArme::~FenetreCreationArme()
 
 }
 
-QStringList* FenetreCreationArme::GetArmeCreated(void)
+void FenetreCreationArme::Verification_Champs_arme(void)
 {
-    return m_ListStringRecupArme;
-}
-
-Arme FenetreCreationArme::CreerArme(void)
-{
-    Arme arme_creer;
-
-
-    m_ListStringRecupArme->append(m_NomArme->text());
-    m_ListStringRecupArme->append(m_DegatsArme->text());
-    m_ListStringRecupArme->append(m_PoidsArme->text());
-
-
 
 
     if (m_NomArme->text().isEmpty() ||  m_DegatsArme->text().isEmpty() || m_PoidsArme->text().isEmpty())
     {
-        QMessageBox::warning(this,"Attention","Veuillez vérifier les champs saisis");
+        QMessageBox::warning(this,"Attention","Veuillez vérifier les champs saisis de creation de l arme");
     }
     else
     {
-
+        emit Validation_Arme(true);
     }
-//    qDebug() << "arme creee : "<< "Nom/dgts/poids : " <<  QString::fromStdString(arme_creer.GetNomArme())<< " / "<< arme_creer.GetDegats()<< " / "<< arme_creer.GetPoids();
-    return arme_creer;
+
 
 }
 
@@ -91,13 +82,16 @@ QString FenetreCreationArme::GetNom(void)
     return m_NomArme->text();
 }
 
-int FenetreCreationArme::GetDegats()
+void FenetreCreationArme::GetDegats(void)
 {
-    return m_DegatsArme->text().toInt();
+    qDebug()<<"woooow";
+    qDebug()<< m_DegatsArme->text();
+
 }
 
 int FenetreCreationArme::GetPoids()
 {
     return m_PoidsArme->text().toInt();
 }
+
 

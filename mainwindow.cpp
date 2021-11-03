@@ -1,7 +1,7 @@
+
 #include "mainwindow.h"
 #include "qdebug.h"
 #include <vector>
-#include "personnage.h"
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     this->setCentralWidget(WidgetPrincipal);
 
     //Fenetre de creation de perso
-    FenetreCreationPerso *WdwCreationPerso = new FenetreCreationPerso(this);
-    FenetreCreationArme *WdwCreationArme = new FenetreCreationArme(this);
+    FenetreCreationPerso *WdwCreationPerso = new FenetreCreationPerso();
+    FenetreCreationArme *WdwCreationArme = new FenetreCreationArme();
 
     //Creation des layouts
     QBoxLayout *LayoutGeneralMain = new QBoxLayout(QBoxLayout::TopToBottom,this);
@@ -41,11 +41,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     QObject::connect(m_BoutonCreerPerso,SIGNAL(clicked()),WdwCreationPerso,SLOT(show()));
     QObject::connect(m_BoutonCreerArme,SIGNAL(clicked()),WdwCreationArme,SLOT(show()));
 
-   // QObject::connect(m_BoutonCreerArme,SIGNAL(clicked()),WdwCreationArme,SLOT(Crer))
+    QObject::connect(WdwCreationArme,SIGNAL(Validation_Arme(bool)),this,SLOT(CreerArme()));
 
-
-
-    std::vector<Personnage> ListePerso;
 
 
 }
@@ -55,13 +52,22 @@ MainWindow::~MainWindow()
     delete WidgetPrincipal;
 }
 
-Arme MainWindow::CreerArme(void)
+void MainWindow::CreerArme(void)
 {
     Arme arme_creer;
-    std::string nom_arme;
-    int degats_arme, poids_arme;
+    int degat_recup;
+WdwCreationArme->GetDegats();
+   // arme_creer.SetDegatsArme(degat_recup);
+ //   arme_creer.SetNomArme(WdwCreationArme->GetNom().toStdString());
+//    arme_creer.SetPoidsArme(WdwCreationArme->GetPoids());
 
 
+qDebug() << "creer arme stimu";
+    //qDebug() << WdwCreationArme->GetDegats();
+
+  //  ListeArme.push_back(arme_creer);
+
+ //   qDebug() << "arme creee : "<< "Nom/dgts/poids : " <<  QString::fromStdString(arme_creer.GetNomArme())<< " / "<< arme_creer.GetDegats()<< " / "<< arme_creer.GetPoids();
 
 //    degats_arme = m_DegatsArme->text().toInt();
 //    poids_arme = m_PoidsArme->text().toInt();
@@ -69,4 +75,5 @@ Arme MainWindow::CreerArme(void)
 //    arme_creer.SetDegatsArme(degats_arme);
 //    arme_creer.SetPoidsArme(poids_arme);
 //    arme_creer.SetNomArme(m_NomArme->text().toStdString());
+
 }

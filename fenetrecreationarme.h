@@ -9,7 +9,6 @@
 #include "QString"
 #include "QObject"
 #include "QWidget"
-#include "arme.h"
 
 class FenetreCreationArme : public QWidget
 {
@@ -18,13 +17,16 @@ public:
      FenetreCreationArme(QWidget *parent = nullptr);
     ~FenetreCreationArme();
 
-    QString GetNom(void);
-    int GetDegats(void);
-    int GetPoids(void);
-    QStringList* GetArmeCreated(void);
-public slots:
-     Arme CreerArme(void);
 
+     QString GetNom(void);
+    int GetPoids(void);
+public slots:
+    void Verification_Champs_arme(void);
+    void GetDegats(void);
+
+
+signals:
+    void Validation_Arme(bool valid_arm);
 
 private:
     QLineEdit *m_NomArme;
@@ -42,9 +44,7 @@ private:
 
    QStringList *m_ListStringRecupArme;
 
-    QString m_StringNomArme;
-    QString m_StringDegatsArme;
-    QString m_StringPoidsArme;
+
 
 };
 

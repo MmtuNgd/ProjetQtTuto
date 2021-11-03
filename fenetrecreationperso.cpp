@@ -18,7 +18,6 @@ FenetreCreationPerso::FenetreCreationPerso(QWidget *parent) : QWidget(parent)
 
     // Creation des champs de saisi de la fenetre
     m_NomPerso = new QLineEdit;
-    m_Arme = new QLineEdit;
     m_Classe = new QLineEdit;
     m_Equipe = new QLineEdit;
 
@@ -39,7 +38,6 @@ FenetreCreationPerso::FenetreCreationPerso(QWidget *parent) : QWidget(parent)
     m_ChampsSaisis->addRow("Nom du Personnage",m_NomPerso);
     m_ChampsSaisis->addRow("Nom de la classe",m_Classe);
     m_ChampsSaisis->addRow("Nom de l'equipe",m_Equipe);
-    m_ChampsSaisis->addRow("Nom de l'arme",m_Arme);
 
 
     // mise en forme de la layout des boutons
@@ -54,8 +52,8 @@ FenetreCreationPerso::FenetreCreationPerso(QWidget *parent) : QWidget(parent)
     setLayout(m_LayoutGlobale);
 
     QObject::connect(m_FermerCreationPerso,SIGNAL(clicked()),this,SLOT(close()));
-    QObject::connect(m_ValidationPerso,SIGNAL(clicked()),this,SLOT(RemplirListe()));
-    QObject::connect(m_ValidationPerso,SIGNAL(clicked()),this,SLOT(SendMsg()));
+//    QObject::connect(m_ValidationPerso,SIGNAL(clicked()),this,SLOT(RemplirListe()));
+    QObject::connect(m_ValidationPerso,SIGNAL(clicked()),this,SLOT(Verification_Champs_perso()));
 
 
 
@@ -66,45 +64,14 @@ FenetreCreationPerso::~FenetreCreationPerso()
 
 }
 
-void FenetreCreationPerso::SendMsg(void)
-
-{
-    //tab[0] = m_NomPerso->text();
-    //qDebug() << /*QString::fromStdString(*/m_Personnage_a_creer.GetDegats();
-}
-
-void FenetreCreationPerso::RemplirListe()
+void FenetreCreationPerso::Verification_Champs_perso()
 {
 
-
-    m_StringArmePerso = m_Arme->text();
-    m_StringClassePerso = m_Classe->text();
-    m_StringEquipePerso = m_Equipe->text();
-    m_StringNomPerso = m_NomPerso->text();
-
-    if ((m_StringArmePerso.isEmpty())  || (m_StringClassePerso.isEmpty()) || (m_StringEquipePerso.isEmpty()) || (m_StringNomPerso.isEmpty()) )
+    if (m_NomPerso->text().isEmpty() ||  m_Classe->text().isEmpty() || m_Equipe->text().isEmpty())
     {
-
-        QMessageBox::warning(this,"Attention","Veuillez vérifier les champs saisis");
+        QMessageBox::warning(this,"Attention","Veuillez vérifier les champs saisis de creation du personnage");
     }
-    else
-    {
-    m_ListStringRecupPerso->append(m_NomPerso->text());
-    m_ListStringRecupPerso->append(m_Classe->text());
-    m_ListStringRecupPerso->append(m_Equipe->text());
-    m_ListStringRecupPerso->append(m_Arme->text());
-
-
-        qDebug() << *m_ListStringRecupPerso;
-        m_ListStringRecupPerso->clear();
-
-        m_NomPerso->clear();
-        m_Classe->clear();
-        m_Equipe->clear();
-        m_Arme->clear();
-    }
-
-
-
-
 }
+
+
+

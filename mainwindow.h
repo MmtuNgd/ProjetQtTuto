@@ -23,13 +23,14 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public slots:
+    void CreerArme(void);
 
 
 public:
      explicit MainWindow(QWidget *parent = nullptr);
      ~MainWindow();
+//    void CreerArme(void);
 
-    Arme CreerArme(void);
     //QStringList* RecuperationArmeCreee(void);
     QWidget *WidgetPrincipal;
 
@@ -50,11 +51,9 @@ private:
     // gestion des sous fenetre *** pb*
     FenetreCreationArme *WdwCreationArme;
     FenetreCreationPerso *WdwCreationPerso;
+    std::vector<Arme> ListeArme;
 
-   // FenetreCreationPerso *aaa;
- //  Guerrier mathieu;
 
-    // FenetreCreationArme *WdwCreationArme;
 
 };
 
