@@ -24,14 +24,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public slots:
     void CreerArme(void);
+    void CreerPersonnage(void);
+
+    void AfficherArmes(void);
+    void AfficherPerso(void);
 
 
 public:
      explicit MainWindow(QWidget *parent = nullptr);
      ~MainWindow();
-//    void CreerArme(void);
-
-    //QStringList* RecuperationArmeCreee(void);
     QWidget *WidgetPrincipal;
 
 
@@ -39,7 +40,8 @@ public:
     QPushButton *m_BoutonCreerPerso;
     QPushButton *m_BoutonCreerArme;
     QPushButton *m_BoutonQuitter;
-
+    QPushButton *m_BoutonAfficherArmes;
+    QPushButton *m_BoutonAfficherPerso;
 
 
     // Gestion des layout
@@ -48,10 +50,13 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+
     // gestion des sous fenetre *** pb*
     FenetreCreationArme *WdwCreationArme;
     FenetreCreationPerso *WdwCreationPerso;
     std::vector<Arme> ListeArme;
+    std::vector<Personnage> ListePerso;
 
 
 

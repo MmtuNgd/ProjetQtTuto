@@ -5,7 +5,8 @@
 #include "QDebug"
 #include "QMessageBox"
 #include "QString"
-#include "iostream"
+
+
 FenetreCreationArme::FenetreCreationArme(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Création d'un personnage");
@@ -52,6 +53,8 @@ FenetreCreationArme::FenetreCreationArme(QWidget *parent) : QWidget(parent)
     QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(Verification_Champs_arme()));
 
     QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(GetDegats()));
+    QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(GetNom()));
+    QObject::connect(m_ValidationArme,SIGNAL(clicked()),this,SLOT(GetPoids()));
 
 
 }
@@ -82,10 +85,9 @@ QString FenetreCreationArme::GetNom(void)
     return m_NomArme->text();
 }
 
-void FenetreCreationArme::GetDegats(void)
+int FenetreCreationArme::GetDegats(void)
 {
-    qDebug()<<"woooow";
-    qDebug()<< m_DegatsArme->text();
+    return m_DegatsArme->text().toInt();
 
 }
 

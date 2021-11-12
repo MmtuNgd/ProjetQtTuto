@@ -18,11 +18,12 @@ public:
     ~FenetreCreationArme();
 
 
-     QString GetNom(void);
-    int GetPoids(void);
 public slots:
+    int GetDegats(void);
+    int GetPoids(void);
+    QString GetNom(void);
+
     void Verification_Champs_arme(void);
-    void GetDegats(void);
 
 
 signals:
